@@ -6,7 +6,23 @@
 :root{--accent:#c0392b;--accent2:#e67e22;--minor:#7f8c8d;--bg:#fafafa;--card:#fff;--ink:#1a1a1a;--muted:#666;}
 *{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
-header{max-width:840px;margin:0 auto;padding:32px 20px 8px}
+/* ticker */
+.tickerbar{position:sticky;top:0;z-index:20;background:#161616;color:#fff;display:flex;align-items:center;overflow:hidden;height:36px;border-bottom:2px solid var(--accent)}
+.tickerlabel{flex:0 0 auto;background:var(--accent);color:#fff;font-weight:700;padding:0 12px;height:100%;display:flex;align-items:center;gap:6px;letter-spacing:.6px;font-size:11px;text-transform:uppercase}
+.tickerlabel .live{width:8px;height:8px;border-radius:50%;background:#fff;animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+.tickerwrap{flex:1 1 auto;overflow:hidden;white-space:nowrap;position:relative}
+.tickertrack{display:inline-block;white-space:nowrap;will-change:transform;animation:ticker var(--dur,40s) linear infinite}
+.tickerbar:hover .tickertrack{animation-play-state:paused}
+.tickeritem{display:inline-block;margin:0 30px;font-size:13px;color:#e8e8e8}
+.tickeritem .tt{color:#f0b37e;font-weight:700;margin-right:7px;font-variant-numeric:tabular-nums}
+.tickeritem a{color:#7fb3ff;text-decoration:none}
+.tickeritem a:hover{text-decoration:underline}
+.tickeritem .sep{color:#555;margin:0 0 0 7px}
+.tickerempty{padding:0 14px;font-size:13px;color:#9a9a9a}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* page */
+header{max-width:840px;margin:0 auto;padding:28px 20px 8px}
 h1{margin:0 0 4px;font-size:26px}
 .sub{margin:0;color:var(--muted)}
 .updated{margin:6px 0 0;color:var(--muted);font-size:13px}
@@ -31,7 +47,6 @@ h1{margin:0 0 4px;font-size:26px}
 .summary{color:#333;font-size:14px}
 .detail{max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .25s ease;font-size:14px;color:#444}
 .evt:hover .detail,.evt:focus .detail,.evt.pinned .detail{max-height:600px;opacity:1;margin-top:8px;padding-top:8px;border-top:1px dashed #e0e0e0}
-.hint{font-size:11px;color:#aaa;margin-top:6px}
 .cites{white-space:nowrap}
 .cite{color:var(--accent);text-decoration:none;font-weight:700;font-size:12px;margin-left:2px}
 .cite:hover{text-decoration:underline}
@@ -46,11 +61,12 @@ h1{margin:0 0 4px;font-size:26px}
 footer{max-width:840px;margin:0 auto 50px;padding:0 20px;color:#aaa;font-size:12px}
 @media(max-width:560px){.title{font-size:15px}h1{font-size:22px}}
 </style></head><body>
+<div class="tickerbar"><div class="tickerlabel"><span class="live"></span>Live ticker · last 3h</div><div class="tickerwrap"><div class="tickertrack" style="--dur:48s"><span class="tickeritem"><span class="tt">19m ago</span>isfable5back.com tracker: still offline, no announced return date <a href="https://isfable5back.com" target="_blank" rel="noopener">(isfable5back.com)</a></span><span class="tickeritem"><span class="tt">1h10m ago</span>Anthropic staff met Trump officials in DC again Monday; models still offline <a href="https://www.cnbc.com/2026/06/15/anthropic-mythos-trump-ai.html" target="_blank" rel="noopener">(CNBC)</a></span><span class="tickeritem"><span class="tt">1h50m ago</span>White House officials scorn Anthropic for downplaying jailbreak risks <a href="https://nypost.com/2026/06/15/business/anthropic-downplays-security-risks-of-mythos-and-fable-ai-models-after-ban-prompting-scorn-from-white-house-officials/" target="_blank" rel="noopener">(NY Post)</a></span><span class="tickeritem"><span class="tt">2h40m ago</span>Prediction markets price ~79-80% restoration by July 1 (Polymarket/Octagon) <span class="sep">Polymarket</span></span><span class="tickeritem"><span class="tt">19m ago</span>isfable5back.com tracker: still offline, no announced return date <a href="https://isfable5back.com" target="_blank" rel="noopener">(isfable5back.com)</a></span><span class="tickeritem"><span class="tt">1h10m ago</span>Anthropic staff met Trump officials in DC again Monday; models still offline <a href="https://www.cnbc.com/2026/06/15/anthropic-mythos-trump-ai.html" target="_blank" rel="noopener">(CNBC)</a></span><span class="tickeritem"><span class="tt">1h50m ago</span>White House officials scorn Anthropic for downplaying jailbreak risks <a href="https://nypost.com/2026/06/15/business/anthropic-downplays-security-risks-of-mythos-and-fable-ai-models-after-ban-prompting-scorn-from-white-house-officials/" target="_blank" rel="noopener">(NY Post)</a></span><span class="tickeritem"><span class="tt">2h40m ago</span>Prediction markets price ~79-80% restoration by July 1 (Polymarket/Octagon) <span class="sep">Polymarket</span></span></div></div></div>
 <header>
 <h1>Claude Fable 5 / Mythos 5 — Suspension Timeline</h1>
 <p class="sub">US export-control suspension of Anthropic&#x27;s Fable 5 &amp; Mythos 5, tracked live. Hover/tap any item for detail + sources.</p>
-<p class="updated">Last updated: 2026-06-15 15:25 UTC &nbsp;·&nbsp; 16 events (10 major, 6 minor)</p>
-<p class="legend"><span class="dot major"></span> Major &nbsp;&nbsp; <span class="dot minor"></span> Minor &nbsp;·&nbsp; hover or tap an item to expand; click to pin.</p>
+<p class="updated">Last updated: 2026-06-15 16:40 UTC &nbsp;·&nbsp; 16 events (10 major, 6 minor) &nbsp;·&nbsp; 4 ticker item(s) in last 3h</p>
+<p class="legend"><span class="dot major"></span> Major &nbsp;&nbsp; <span class="dot minor"></span> Minor &nbsp;·&nbsp; hover or tap an item to expand; click to pin. Ticker (top) = smaller items from the last 3h.</p>
 </header>
 <ul class="timeline">
 <li class="evt minor" tabindex="0"><span class="marker"></span><div class="card"><div class="meta"><span class="date">2026-03-09</span><span class="badge minor">minor</span></div><div class="title">Backstory: Anthropic designated a &#x27;supply chain risk&#x27;</div><div class="summary">Pentagon bars Anthropic from defense contracts; Anthropic sues; rival employees back it.</div><div class="detail">After CEO Dario Amodei refused to allow Claude for autonomous weapons or mass surveillance of Americans, the Trump administration (Def. Sec. Hegseth) designated Anthropic a &#x27;supply chain risk.&#x27; Anthropic filed two suits (N.D. Cal. + D.C. Circuit) calling it &#x27;unprecedented and unlawful&#x27;; 30+ Google and OpenAI employees filed a brief supporting Anthropic. <span class="cites"><a class="cite" href="#src-18">[18]</a><a class="cite" href="#src-15">[15]</a></span></div></div></li>
