@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" data-theme="wire" data-suspended="2026-06-12T21:21:00Z" data-official="2026-06-13T00:50:00Z"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><title>Claude Fable 5 / Mythos 5 — Suspension Timeline</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600;700&display=swap" rel="stylesheet"><style>
+<!DOCTYPE html><html lang="en" data-theme="wire" data-suspended="2026-06-12T21:21:00Z" data-official="2026-06-13T00:50:00Z" data-updated-iso="2026-06-16T00:12:59Z" data-status="suspended"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><title>Claude Fable 5 / Mythos 5 — Suspension Timeline</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600;700&display=swap" rel="stylesheet"><style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 :root{
@@ -118,6 +118,9 @@ h1{margin:0;font-family:var(--serif);font-size:27px;font-weight:600;line-height:
 .tk-src{font-family:var(--mono);font-size:11px;color:var(--dim);text-decoration:none}
 .tk-src:hover{text-decoration:underline}
 .chyron-empty{padding:13px 22px;font-family:var(--mono);font-size:12px;color:var(--faint)}
+/* update banner */
+.updbanner{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:60;display:none;align-items:center;gap:8px;background:var(--red);color:var(--bg);font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.04em;padding:8px 14px;cursor:pointer;box-shadow:0 4px 16px -4px rgba(0,0,0,.45)}
+.updbanner .d{width:7px;height:7px;border-radius:50%;background:var(--bg);animation:blink 1.3s steps(1) infinite}
 @media(max-width:560px){h1{font-size:22px}.statuscard{min-width:0}}
 </style></head><body>
 <div class="page"><div class="wrap">
@@ -152,6 +155,7 @@ h1{margin:0;font-family:var(--serif);font-size:27px;font-weight:600;line-height:
 <div class="footnote">Official restoration signal: anthropic.com / status.claude.com. Ticker items are single-source and provisional — they surface in the bottom chyron and the 3-hour briefing first, then promote into the timeline once corroborated by multiple sources. Live availability is verified by a direct Fable 5 probe each cycle.</div>
 </div></div>
 <div class="chyron"><div class="chyron-label"><span class="d"></span><span class="t">INCOMING</span></div><div class="chyron-track-wrap"><div class="chyron-track"><div class="tk-item"><span class="tk-dot"></span><span class="tk-when" data-ts="2026-06-16T00:12:59Z">—</span><span class="tk-text">Polymarket: Fable 5 US-restoration odds ~57% by Jun 22, ~77% by Jul 1 (vol ~$245k)</span><a class="tk-src" href="https://polymarket.com/event/claude-fable-5-restored-for-us-customers-by-20260613193753196" target="_blank" rel="noopener">· Polymarket</a></div><div class="tk-item"><span class="tk-dot"></span><span class="tk-when" data-ts="2026-06-15T19:08:00Z">—</span><span class="tk-text">Octagon market: ~79% restoration by Jun 20, ~80% by Jul 1</span><a class="tk-src" href="https://octagonai.co/markets/politics/when-will-anthropic-restore-fable-5-access-for-us-customers/" target="_blank" rel="noopener">· Octagon</a></div><div class="tk-item"><span class="tk-dot"></span><span class="tk-when" data-ts="2026-06-16T00:12:59Z">—</span><span class="tk-text">Polymarket: Fable 5 US-restoration odds ~57% by Jun 22, ~77% by Jul 1 (vol ~$245k)</span><a class="tk-src" href="https://polymarket.com/event/claude-fable-5-restored-for-us-customers-by-20260613193753196" target="_blank" rel="noopener">· Polymarket</a></div><div class="tk-item"><span class="tk-dot"></span><span class="tk-when" data-ts="2026-06-15T19:08:00Z">—</span><span class="tk-text">Octagon market: ~79% restoration by Jun 20, ~80% by Jul 1</span><a class="tk-src" href="https://octagonai.co/markets/politics/when-will-anthropic-restore-fable-5-access-for-us-customers/" target="_blank" rel="noopener">· Octagon</a></div></div></div></div>
+<div class="updbanner" id="updbanner"><span class="d"></span>New update published — click to refresh</div>
 <script>
 (function(){
  var root=document.documentElement;
@@ -177,6 +181,25 @@ h1{margin:0;font-family:var(--serif);font-size:27px;font-weight:600;line-height:
   if(!isNaN(OFF))setAll('.js-official',fmtDur(now-OFF));
   document.querySelectorAll('[data-ts]').forEach(function(el){var t=Date.parse(el.getAttribute('data-ts')); if(!isNaN(t))el.textContent=ago(t);});}
  tick(); setInterval(tick,1000);
+})();
+(function(){
+ var root=document.documentElement;
+ var loadedIso=root.getAttribute('data-updated-iso')||'';
+ var loadedStatus=root.getAttribute('data-status')||'';
+ var banner=document.getElementById('updbanner');
+ function freshReload(){ location.href=location.pathname+'?t='+Date.now(); }
+ if(banner) banner.addEventListener('click', freshReload);
+ function check(){
+  fetch(location.pathname+'?cb='+Date.now(),{cache:'no-store'}).then(function(r){return r.text();}).then(function(t){
+   var mi=t.match(/data-updated-iso="([^"]*)"/), ms=t.match(/data-status="([^"]*)"/);
+   var iso=mi?mi[1]:'', st=ms?ms[1]:'';
+   if(iso && iso!==loadedIso){
+    if(st==='restored' && st!==loadedStatus){ freshReload(); return; }
+    if(banner) banner.style.display='flex';
+   }
+  }).catch(function(){});
+ }
+ setInterval(check, 90000);
 })();
 </script>
 </body></html>
